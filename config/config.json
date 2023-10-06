@@ -1,0 +1,23 @@
+{
+  "development": {
+    "dialect": "postgres",
+    "host": "comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com",
+    "username": "postgres",
+    "password": "admin123",
+    "database": "comicshop"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "dialect": "postgres",
+    "host": "comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com",
+    "username": "postgres",
+    "password": "admin123",
+    "database": "comicshop"
+  }
+}
