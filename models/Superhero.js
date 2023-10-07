@@ -31,7 +31,7 @@ Superhero.init({
 }, {
     sequelize: sequelize_2.default,
     modelName: 'Superhero',
-    tableName: 'superheros',
+    tableName: 'superheroes',
 });
 Superhero.belongsTo(Publisher_1.Publisher, {
     foreignKey: 'publisherId',

@@ -34,7 +34,7 @@ Superhero.init(
     {
         sequelize, 
         modelName: 'Superhero', 
-        tableName: 'superheros', 
+        tableName: 'superheroes', 
     }
     
     );

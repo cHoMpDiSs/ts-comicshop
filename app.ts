@@ -132,18 +132,18 @@ const deleteComic = async (request: Request, response: Response) => {
 
 // POST
 app.post('/api/publishers', postPublisher)
-app.post('/api/superheros', postSuperhero)
+app.post('/api/superheroes', postSuperhero)
 app.post('/api/comics', postComic)
 
 // GET
 app.get('/api/publishers', queryPublisher)
-app.get('/api/superheros', querySuperhero)
+app.get('/api/superheroes', querySuperhero)
 app.get('/api/comics', queryComic)
 
 
 // DELETE
 app.delete('/api/publishers/:id', deletePublisher)
-app.delete('/api/superheros/:id', deleteSuperhero)
+app.delete('/api/superheroes/:id', deleteSuperhero)
 app.delete('/api/comics/:id', deleteComic)
 
 
