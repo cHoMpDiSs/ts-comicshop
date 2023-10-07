@@ -18,18 +18,9 @@ const sequelize = new Sequelize({
 class Superhero extends Model {
     public id!: number;
     public name!: string;
-    public superpowerId!: number;
-
-    static associate(models: any) {
-        Superhero.belongsTo(models.Publisher, {
-            foreignKey: 'publisherId',
-            as: 'publisher', // This sets an alias for the association
-        });
-    }
+    public publisherId!: number;
+    
 }
-
-
-
 
 Superhero.init(
     {
@@ -46,9 +37,9 @@ Superhero.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Publisher', 
-                key: 'id',            
-            }
+                model: Publisher, 
+                key: 'id',
+            },
     }
 },
     {
@@ -60,7 +51,13 @@ Superhero.init(
     );
 
 
-Superhero.belongsTo(Publisher, { foreignKey: 'publisherId', as: 'publisher' });
+
+
+Superhero.belongsTo(Publisher,{
+    foreignKey: 'publisherId',
+    constraints: false
+});
+
 sequelize.sync({ force: false }); 
 
 export { Superhero };

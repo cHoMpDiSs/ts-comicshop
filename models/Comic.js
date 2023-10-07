@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Superhero = void 0;
+exports.Comic = void 0;
 const sequelize_1 = require("sequelize");
 const Publisher_1 = require("./Publisher");
+const Superhero_1 = require("./Superhero");
 const sequelize = new sequelize_1.Sequelize({
     define: {
         timestamps: false,
@@ -13,17 +14,21 @@ const sequelize = new sequelize_1.Sequelize({
     database: 'comicshop',
     password: 'admin123',
 });
-class Superhero extends sequelize_1.Model {
+class Comic extends sequelize_1.Model {
 }
-exports.Superhero = Superhero;
-Superhero.init({
+exports.Comic = Comic;
+Comic.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    name: {
+    series: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    issue: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     publisherId: {
@@ -33,14 +38,26 @@ Superhero.init({
             model: Publisher_1.Publisher,
             key: 'id',
         },
+    },
+    superHeroId: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Superhero_1.Superhero,
+            key: 'id',
+        },
     }
 }, {
     sequelize,
-    modelName: 'Superhero',
-    tableName: 'superheros',
+    modelName: 'Comic',
+    tableName: 'comics',
 });
-Superhero.belongsTo(Publisher_1.Publisher, {
+Comic.belongsTo(Publisher_1.Publisher, {
     foreignKey: 'publisherId',
+    constraints: false
+});
+Comic.belongsTo(Superhero_1.Superhero, {
+    foreignKey: 'superHeroId',
     constraints: false
 });
 sequelize.sync({ force: false });

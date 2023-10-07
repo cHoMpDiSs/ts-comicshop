@@ -1,7 +1,6 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize'; 
 
-
 const sequelize = new Sequelize({
     define: {
         timestamps: false,
@@ -51,6 +50,7 @@ Publisher.init(
         tableName: 'publishers', 
     }
 );
+
 
 
 sequelize.sync({ force: false }); 
