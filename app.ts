@@ -19,6 +19,7 @@ app.use(
   })
 )
 
+// PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
   const newPublisher = new Publisher(request.body);
   await newPublisher.save();
@@ -52,12 +53,16 @@ const deletePublisher = async (request: Request, response: Response) => {
   }
 };
 
+// SUPERHERO API
+
+// POST
 const postSuperhero = async (request: Request, response: Response) =>{
   const newSuperhero = new Superhero(request.body);
   await newSuperhero.save();
   response.send(newSuperhero)
 }
 
+// GET
 const querySuperhero = async (request: Request, response: Response) => {
   try {
       const superheros = await Superhero.findAll();
@@ -68,13 +73,35 @@ const querySuperhero = async (request: Request, response: Response) => {
   }
 };
 
+// DELETE
+const deleteSuperhero = async (request: Request, response: Response) => {
+  try {
+    const superheroId = parseInt(request.params.id, 10); 
+    const superheroToDelete = await Superhero.findByPk(superheroId);
 
+    if (!superheroToDelete) {
+      return response.status(404).json({ error: 'Superhero not found' });
+    }
+
+    await superheroToDelete.destroy();
+    return response.status(204).send(); 
+  } catch (error) {
+    console.error('Error deleting superhero:', error);
+    return response.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+// ************** COMIC API ********************
+
+// POST
 const postComic = async (request: Request, response: Response) => {
   const newComic = new Comic(request.body);
   await newComic.save();
   response.send(newComic)
 }
 
+// GET
 const queryComic = async (request: Request, response: Response) => {
     try {
         const comics = await Comic.findAll();
@@ -85,21 +112,39 @@ const queryComic = async (request: Request, response: Response) => {
     }
 };
 
+// DELETE
+const deleteComic = async (request: Request, response: Response) => {
+  try {
+    const comicId = parseInt(request.params.id, 10); 
+    const comicToDelete = await Comic.findByPk(comicId);
 
-// GET
-app.get('/api/publishers', queryPublisher)
-app.get('/api/superheros', querySuperhero)
-app.get('/api/comics', queryComic)
+    if (!comicToDelete) {
+      return response.status(404).json({ error: 'Comic not found' });
+    }
+
+    await comicToDelete.destroy();
+    return response.status(204).send(); 
+  } catch (error) {
+    console.error('Error deleting comic:', error);
+    return response.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 // POST
 app.post('/api/publishers', postPublisher)
 app.post('/api/superheros', postSuperhero)
 app.post('/api/comics', postComic)
 
+// GET
+app.get('/api/publishers', queryPublisher)
+app.get('/api/superheros', querySuperhero)
+app.get('/api/comics', queryComic)
+
 
 // DELETE
 app.delete('/api/publishers/:id', deletePublisher)
-
+app.delete('/api/superheros/:id', deleteSuperhero)
+app.delete('/api/comics/:id', deleteComic)
 
 
 app.listen(port, () => {

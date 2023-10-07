@@ -1,17 +1,18 @@
 
-import { Sequelize, DataTypes, Model } from 'sequelize'; 
+import {DataTypes, Model } from 'sequelize'; 
+import sequelize from "../sequelize"
 
-const sequelize = new Sequelize({
-    define: {
-        timestamps: false,
-      },
-    dialect: 'postgres', 
-    username: 'postgres',
-    host: 'comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com',
-    database: 'comicshop',
-    password: 'admin123',
+// const sequelize = new Sequelize({
+//     define: {
+//         timestamps: false,
+//       },
+//     dialect: 'postgres', 
+//     username: 'postgres',
+//     host: 'comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com',
+//     database: 'comicshop',
+//     password: 'admin123',
   
-});
+// });
 
 
 class Publisher extends Model {
