@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "start": "ts-node app.ts",
-    "postinstall": "tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q app.js\""
-    
+    "build": "npx",
+    "start": "node app.js",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",

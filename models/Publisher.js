@@ -6,16 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Publisher = void 0;
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../sequelize"));
-// const sequelize = new Sequelize({
-//     define: {
-//         timestamps: false,
-//       },
-//     dialect: 'postgres', 
-//     username: 'postgres',
-//     host: 'comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com',
-//     database: 'comicshop',
-//     password: 'admin123',
-// });
 class Publisher extends sequelize_1.Model {
 }
 exports.Publisher = Publisher;

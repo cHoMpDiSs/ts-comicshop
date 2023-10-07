@@ -4,24 +4,13 @@ import { Superhero} from "./Superhero";
 import sequelize from "../sequelize"
 
 
-// const sequelize = new Sequelize({
-//     define: {
-//         timestamps: false,
-//       },
-//     dialect: 'postgres', 
-//     username: 'postgres',
-//     host: 'comicshop.c8da90fz6lfx.us-east-1.rds.amazonaws.com',
-//     database: 'comicshop',
-//     password: 'admin123',
-  
-// });
-
 class Comic extends Model {
     public id!: number;
     public series!: string;
     public issue!: number;
     public publisherId!: number;
     public superHeroId!: number;
+    public imgUrl!: string;
 }
 
 Comic.init(
@@ -37,6 +26,10 @@ Comic.init(
         },
         issue:{
             type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        imgUrl:{
+            type:DataTypes.STRING,
             allowNull: false,
         },
         publisherId: {
