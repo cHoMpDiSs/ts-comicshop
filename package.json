@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node app.js",
-    "heroku-postbuild": "npm install && npm run build" 
+    "heroku-postbuild": "npm install && npm start" 
   },
   "keywords": [],
   "author": "",
