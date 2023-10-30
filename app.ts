@@ -5,19 +5,29 @@ import dotenv from 'dotenv';
 import { Publisher } from './models/Publisher';
 import { Superhero } from './models/Superhero';
 import { Comic } from './models/Comic';
+import cors from 'cors'; 
+
 
 dotenv.config();
 
 const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
+
+app.use(cors({
+  origin: 'http://localhost:3000'
+}
+))
+
+
 app.use(express.json());
-app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 )
+app.use(bodyParser.json())
+
 
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
