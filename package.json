@@ -7,7 +7,7 @@
     "build": "npx tsc",
     "start": "node app.js",
     "postinstall": "npm run build",
-    "heroku-postbuild": "npm install --production && npm run build"
+    "heroku-postbuild": "npm install --production && npm start"
   },
   "keywords": [],
   "author": "",
