@@ -13,9 +13,12 @@ dotenv.config();
 const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
+const allowedOrigins = ['http://localhost:3000', 'https://ts-comicshop-28397a67a86b.herokuapp.com'];
 
-app.use(cors());
-
+app.use(cors({
+  origin: allowedOrigins
+}
+))
 
 
 app.use(express.json());
@@ -111,7 +114,6 @@ const postComic = async (request: Request, response: Response) => {
 
 // GET
 const queryComic = async (request: Request, response: Response) => {
-
     try {
         const comics = await Comic.findAll();
         response.send(comics)
@@ -156,6 +158,6 @@ app.delete('/api/superheroes/:id', deleteSuperhero)
 app.delete('/api/comics/:id', deleteComic)
 
 
-app.listen(5000, () => {
-  console.log(`RUNNING ON PORT ${5000}` )
+app.listen(port, () => {
+  console.log(`RUNNING ON PORT ${port}` )
 })
