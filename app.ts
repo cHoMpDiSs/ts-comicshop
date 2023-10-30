@@ -14,12 +14,9 @@ const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-})
+app.use(cors());
 
-// app.use(cors());
+
 
 app.use(express.json());
 app.use(
@@ -159,6 +156,6 @@ app.delete('/api/superheroes/:id', deleteSuperhero)
 app.delete('/api/comics/:id', deleteComic)
 
 
-app.listen(port, () => {
-  console.log(`RUNNING ON PORT ${port}` )
+app.listen(5000, () => {
+  console.log(`RUNNING ON PORT ${5000}` )
 })

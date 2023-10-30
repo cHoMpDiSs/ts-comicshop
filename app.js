@@ -18,14 +18,11 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = parseInt(process.env.PORT || '3000', 10);
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-});
-// app.use(cors());
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(body_parser_1.default.urlencoded({
     extended: true,
@@ -142,6 +139,6 @@ app.get('/api/comics', queryComic);
 app.delete('/api/publishers/:id', deletePublisher);
 app.delete('/api/superheroes/:id', deleteSuperhero);
 app.delete('/api/comics/:id', deleteComic);
-app.listen(port, () => {
-    console.log(`RUNNING ON PORT ${port}`);
+app.listen(5000, () => {
+    console.log(`RUNNING ON PORT ${5000}`);
 });
