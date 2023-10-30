@@ -22,9 +22,16 @@ const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = parseInt(process.env.PORT || '3000', 10);
-const allowedOrgins = ['https://ts-comicshop-28397a67a86b.herokuapp.com/', 'http://localhost:3000'];
+const allowedOrigins = ['https://ts-comicshop-28397a67a86b.herokuapp.com', 'http://localhost:3000'];
 app.use((0, cors_1.default)({
-    origin: allowedOrgins
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 }));
 app.use(express_1.default.json());
 app.use(body_parser_1.default.urlencoded({
