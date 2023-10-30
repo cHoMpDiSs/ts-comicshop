@@ -13,11 +13,13 @@ dotenv.config();
 const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
+const allowedOrgins = ['https://ts-comicshop-28397a67a86b.herokuapp.com/','http://localhost:3000' ]
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: allowedOrgins
 }
 ))
+
 
 
 app.use(express.json());
