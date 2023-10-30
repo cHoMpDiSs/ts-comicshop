@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx",
+    "build": "npx tsc",
     "start": "node app.js",
     "postinstall": "npm run build",
-    "heroku-postbuild": "npm install && node app.js"
+    "heroku-postbuild": "npm install --production && npm run build"
   },
   "keywords": [],
   "author": "",
