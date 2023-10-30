@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node app.js",
-    "postinstall": "npm run build",
+    "postinstall": "npm install typescript && run build",
     "heroku-postbuild": "npm install --production && npm start"
   },
   "keywords": [],
