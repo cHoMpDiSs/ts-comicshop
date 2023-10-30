@@ -22,17 +22,7 @@ const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = parseInt(process.env.PORT || '3000', 10);
-const allowedOrigins = ['https://ts-comicshop-28397a67a86b.herokuapp.com', 'http://localhost:3000'];
-app.use((0, cors_1.default)({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    }
-}));
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(body_parser_1.default.urlencoded({
     extended: true,
@@ -112,6 +102,7 @@ const postComic = (request, response) => __awaiter(void 0, void 0, void 0, funct
 });
 // GET
 const queryComic = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    response.header('Access-Control-Allow-Origin', '*');
     try {
         const comics = yield Comic_1.Comic.findAll();
         response.send(comics);
