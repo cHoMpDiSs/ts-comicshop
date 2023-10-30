@@ -18,11 +18,16 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
-const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = parseInt(process.env.PORT || '3000', 10);
-app.use((0, cors_1.default)());
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+// app.use(cors());
 app.use(express_1.default.json());
 app.use(body_parser_1.default.urlencoded({
     extended: true,
@@ -102,7 +107,6 @@ const postComic = (request, response) => __awaiter(void 0, void 0, void 0, funct
 });
 // GET
 const queryComic = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    response.header('Access-Control-Allow-Origin', '*');
     try {
         const comics = yield Comic_1.Comic.findAll();
         response.send(comics);

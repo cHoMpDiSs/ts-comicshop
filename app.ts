@@ -14,8 +14,14 @@ const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
 app.use(
@@ -110,7 +116,7 @@ const postComic = async (request: Request, response: Response) => {
 
 // GET
 const queryComic = async (request: Request, response: Response) => {
-  response.header('Access-Control-Allow-Origin', '*');
+
     try {
         const comics = await Comic.findAll();
         response.send(comics)
