@@ -21,9 +21,11 @@ app.use(
 )
 app.use(bodyParser.json())
 
-
-
-app.use(cors<Request>());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  })
+);
 
 
 
