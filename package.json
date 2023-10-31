@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node app.js",
-    "heroku-postbuild": "tsc && npm install && npm start" 
+    "start": "tsc && node dist/app.js",
+    "heroku-postbuild": "npm install && npm start" 
   },
   "keywords": [],
   "author": "",

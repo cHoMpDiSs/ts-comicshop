@@ -116,6 +116,7 @@ const postComic = async (request: Request, response: Response) => {
 
 // GET
 const queryComic = async (request: Request, response: Response) => {
+  response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     try {
         const comics = await Comic.findAll();
         response.send(comics)
