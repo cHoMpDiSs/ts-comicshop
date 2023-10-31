@@ -22,7 +22,10 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const port = 5000;
 //...
-app.use((0, cors_1.default)({ origin: "https://ts-comicshop-react.vercel.app" }));
+app.use((0, cors_1.default)({
+    credentials: true,
+    origin: "https://ts-comicshop-react.vercel.app/api/marvel"
+}));
 const port = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {

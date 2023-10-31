@@ -17,7 +17,9 @@ const app: Express = express();
 
 
 //...
-app.use(cors({origin:"https://ts-comicshop-react.vercel.app"}))
+app.use(cors({
+  credentials:true,
+  origin:"https://ts-comicshop-react.vercel.app/api/marvel"}))
 
 const port: number = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
