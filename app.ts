@@ -17,9 +17,6 @@ const app: Express = express();
 
 const corsOptions = {
   origin: "https://ts-comicshop-react.vercel.app/",  // or your exact URL you allow to make request
-  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
-  credentials: true,
-  preflightContinue:false
 }
 
 //...

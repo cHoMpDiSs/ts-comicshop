@@ -22,10 +22,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const port = 5000;
 const corsOptions = {
-    origin: "https://ts-comicshop-react.vercel.app/",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    credentials: true,
-    preflightContinue: false
+    origin: "https://ts-comicshop-react.vercel.app/", // or your exact URL you allow to make request
 };
 //...
 app.use((0, cors_1.default)(corsOptions));
