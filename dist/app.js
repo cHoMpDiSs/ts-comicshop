@@ -17,15 +17,23 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
-const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const port = 5000;
 //...
-app.use((0, cors_1.default)({
-    credentials: true,
-    origin: "https://ts-comicshop-react.vercel.app/api/marvel"
-}));
+const allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
+app.use(allowCrossDomain);
 const port = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {

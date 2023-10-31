@@ -17,10 +17,22 @@ const app: Express = express();
 
 
 //...
-app.use(cors({
-  credentials:true,
-  origin:"https://ts-comicshop-react.vercel.app/api/marvel"}))
+const allowCrossDomain = function(req: Request, res: Response, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+};
+
+
+app.use(allowCrossDomain);
 const port: number = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
