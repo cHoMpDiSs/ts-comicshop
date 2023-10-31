@@ -23,7 +23,7 @@ dotenv_1.default.config();
 const allowedOrigins = ['http://localhost:3000', 'https://vercel.com/chompdiss-projects/ts-comicshop-react'];
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: allowedOrigins,
+    origin: 'https://vercel.com/chompdiss-projects/ts-comicshop-react',
     methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
 }));
