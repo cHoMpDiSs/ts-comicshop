@@ -17,13 +17,11 @@ const app: Express = express();
 app.use(bodyParser.json());
 
 
-app.use(
-  cors({
-    origin: '*', // Replace '*' with the origin of your frontend app
-    methods: ['GET', 'POST', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
-  })
-);
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+}));
 
 
 
