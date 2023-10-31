@@ -14,17 +14,17 @@ const app: Express = express();
 // const port: number = parseInt(process.env.PORT || '3000', 10);
 const port = 5000;
 
-
-app.use(cors<Request>());
-
-
-
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 )
 app.use(bodyParser.json())
+
+
+
+app.use(cors<Request>());
+
 
 
 // PUBLISHER API

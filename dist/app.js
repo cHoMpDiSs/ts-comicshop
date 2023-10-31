@@ -23,11 +23,11 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const port: number = parseInt(process.env.PORT || '3000', 10);
 const port = 5000;
-app.use((0, cors_1.default)());
 app.use(body_parser_1.default.urlencoded({
     extended: true,
 }));
 app.use(body_parser_1.default.json());
+app.use((0, cors_1.default)());
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);
