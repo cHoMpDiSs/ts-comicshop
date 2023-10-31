@@ -15,7 +15,15 @@ const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000');
 // const port = 5000;
 
-app.use(cors())
+const corsOptions = {
+  origin: "*",  // or your exact URL you allow to make request
+  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+  credentials: true,
+  preflightContinue:false
+}
+
+//...
+app.use(cors(corsOptions))
 
 
 // PUBLISHER API

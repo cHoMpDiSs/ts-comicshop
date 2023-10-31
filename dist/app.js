@@ -22,7 +22,14 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = parseInt(process.env.PORT || '3000');
 // const port = 5000;
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: "*",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    credentials: true,
+    preflightContinue: false
+};
+//...
+app.use((0, cors_1.default)(corsOptions));
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);
