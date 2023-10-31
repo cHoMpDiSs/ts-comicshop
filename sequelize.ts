@@ -9,6 +9,11 @@ const sequelize = new Sequelize({
         timestamps: false,
       },
     dialect: 'postgres', 
+    dialectOptions: {
+      ssl: {
+          require: true,
+          rejectUnauthorized: false
+      },},
     username: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
