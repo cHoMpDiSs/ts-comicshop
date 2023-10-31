@@ -107,6 +107,7 @@ const postComic = (request, response) => __awaiter(void 0, void 0, void 0, funct
 });
 // GET
 const queryComic = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     try {
         const comics = yield Comic_1.Comic.findAll();
         response.send(comics);
@@ -147,3 +148,4 @@ app.delete('/api/comics/:id', deleteComic);
 app.listen(port, () => {
     console.log(`RUNNING ON PORT ${port}`);
 });
+//# sourceMappingURL=app.js.map

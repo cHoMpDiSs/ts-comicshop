@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Publisher = void 0;
+exports.Superhero = void 0;
 const sequelize_1 = require("sequelize");
+const Publisher_1 = require("./Publisher");
 const sequelize_2 = __importDefault(require("../sequelize"));
-class Publisher extends sequelize_1.Model {
+class Superhero extends sequelize_1.Model {
 }
-exports.Publisher = Publisher;
-Publisher.init({
+exports.Superhero = Superhero;
+Superhero.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
@@ -19,17 +20,22 @@ Publisher.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    address: {
-        type: sequelize_1.DataTypes.STRING,
+    publisherId: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
-    },
-    city: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
+        references: {
+            model: Publisher_1.Publisher,
+            key: 'id',
+        },
+    }
 }, {
     sequelize: sequelize_2.default,
-    modelName: 'Publisher',
-    tableName: 'publishers',
+    modelName: 'Superhero',
+    tableName: 'superheroes',
+});
+Superhero.belongsTo(Publisher_1.Publisher, {
+    foreignKey: 'publisherId',
+    constraints: false
 });
 sequelize_2.default.sync({ force: false });
+//# sourceMappingURL=Superhero.js.map

@@ -59,3 +59,4 @@ Comic.belongsTo(Superhero_1.Superhero, {
     constraints: false
 });
 sequelize_2.default.sync({ force: false });
+//# sourceMappingURL=Comic.js.map
