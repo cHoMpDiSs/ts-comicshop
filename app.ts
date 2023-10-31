@@ -16,7 +16,7 @@ const allowedOrigins = ['http://localhost:3000', 'https://vercel.com/chompdiss-p
 const app: Express = express();
 
 app.use(cors({
-  origin: 'https://ts-comicshop-react.vercel.app/',
+  origin: 'https://ts-comicshop-react.vercel.app',
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
 }));
