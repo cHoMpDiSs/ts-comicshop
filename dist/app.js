@@ -18,18 +18,10 @@ const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
 const cors_1 = __importDefault(require("cors"));
-const pg_1 = __importDefault(require("pg"));
-const Pool = new pg_1.default.Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: 5432, // Chan  
-});
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// const port: number = parseInt(process.env.PORT || '3000', 10);
-const port = 5000;
+const port = parseInt(process.env.PORT || '3000');
+// const port = 5000;
 app.use((0, cors_1.default)());
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
