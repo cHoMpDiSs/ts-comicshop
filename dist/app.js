@@ -13,28 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// const port = 5000;
-//...
-const allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-        res.send(200);
-    }
-    else {
-        next();
-    }
-};
-app.use(allowCrossDomain);
-const port = parseInt(process.env.PORT || '3000');
+app.use(body_parser_1.default.json());
+app.use((0, cors_1.default)({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+}));
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);
@@ -146,8 +138,8 @@ app.get('/api/comics', queryComic);
 app.delete('/api/publishers/:id', deletePublisher);
 app.delete('/api/superheroes/:id', deleteSuperhero);
 app.delete('/api/comics/:id', deleteComic);
-app.listen(port, () => {
-    console.log(`RUNNING ON PORT ${port}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });
 exports.default = app;
 //# sourceMappingURL=app.js.map

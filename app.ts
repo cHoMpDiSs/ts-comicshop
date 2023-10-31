@@ -13,27 +13,21 @@ dotenv.config();
 
 const app: Express = express();
 
-// const port = 5000;
+
+app.use(bodyParser.json());
 
 
-//...
-const allowCrossDomain = function(req: Request, res: Response, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-
-  // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  }
-  else {
-    next();
-  }
-};
+app.use(
+  cors({
+    origin: '*', // Replace '*' with the origin of your frontend app
+    methods: ['GET', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+  })
+);
 
 
-app.use(allowCrossDomain);
-const port: number = parseInt(process.env.PORT || '3000');
+
+
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
   const newPublisher = new Publisher(request.body);
@@ -162,8 +156,8 @@ app.delete('/api/superheroes/:id', deleteSuperhero)
 app.delete('/api/comics/:id', deleteComic)
 
 
-app.listen(port, () => {
-  console.log(`RUNNING ON PORT ${port}` )
-})
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server is running on port ${process.env.PORT || 3000}`);
+});
 
 export default app;
