@@ -113,7 +113,7 @@ const postComic = async (request: Request, response: Response) => {
 // GET
 const queryComic = async (request: Request, response: Response) => {
     try {
-        const comics = await Comic.findAll();
+        const comics = await Comic.findAll({});
         response.send(comics)
     } catch (error) {
         console.error("Error querying publishers:", error);

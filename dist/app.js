@@ -102,7 +102,7 @@ const postComic = (request, response) => __awaiter(void 0, void 0, void 0, funct
 // GET
 const queryComic = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const comics = yield Comic_1.Comic.findAll();
+        const comics = yield Comic_1.Comic.findAll({});
         response.send(comics);
     }
     catch (error) {
