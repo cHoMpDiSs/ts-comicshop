@@ -13,30 +13,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const body_parser_1 = __importDefault(require("body-parser"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const Publisher_1 = require("./models/Publisher");
 const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
 const cors_1 = __importDefault(require("cors"));
+const pg_1 = __importDefault(require("pg"));
+const Pool = new pg_1.default.Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: 5432, // Chan  
+});
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // const port: number = parseInt(process.env.PORT || '3000', 10);
 const port = 5000;
-app.use(body_parser_1.default.urlencoded({
-    extended: true,
-}));
-app.use(body_parser_1.default.json());
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested, Content-Type, Accept Authorization");
-    if (req.method === "OPTIONS") {
-        res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
-        return res.status(200).json({});
-    }
-    next();
-});
-app.options('*', (0, cors_1.default)());
+app.use((0, cors_1.default)());
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);

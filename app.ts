@@ -6,40 +6,30 @@ import { Publisher } from './models/Publisher';
 import { Superhero } from './models/Superhero';
 import { Comic } from './models/Comic';
 import cors from 'cors'; 
+import pg from "pg"
 
+const Pool: pg.Pool = new pg.Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: 5432, // Chan  
+});
 
 dotenv.config();
+
+
+
+
 
 const app: Express = express();
 // const port: number = parseInt(process.env.PORT || '3000', 10);
 const port = 5000;
 
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
-app.use(bodyParser.json())
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested, Content-Type, Accept Authorization"
-  )
-  if (req.method === "OPTIONS") {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "POST, PUT, PATCH, GET, DELETE"
-    )
-    return res.status(200).json({})
-  }
-  next()
-})
+app.use(cors())
 
 
 
-app.options('*', cors())
 
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
