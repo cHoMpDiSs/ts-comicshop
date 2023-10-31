@@ -20,16 +20,16 @@ const Comic_1 = require("./models/Comic");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = parseInt(process.env.PORT || '3000');
 // const port = 5000;
 const corsOptions = {
-    origin: "*",
+    origin: "https://ts-comicshop-react.vercel.app/",
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
     preflightContinue: false
 };
 //...
 app.use((0, cors_1.default)(corsOptions));
+const port = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);

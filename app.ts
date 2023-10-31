@@ -12,11 +12,11 @@ dotenv.config();
 
 
 const app: Express = express();
-const port: number = parseInt(process.env.PORT || '3000');
+
 // const port = 5000;
 
 const corsOptions = {
-  origin: "*",  // or your exact URL you allow to make request
+  origin: "https://ts-comicshop-react.vercel.app/",  // or your exact URL you allow to make request
   methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
   credentials: true,
   preflightContinue:false
@@ -25,7 +25,7 @@ const corsOptions = {
 //...
 app.use(cors(corsOptions))
 
-
+const port: number = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
   const newPublisher = new Publisher(request.body);
