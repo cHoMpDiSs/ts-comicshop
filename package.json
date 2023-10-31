@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
     "start": "node dist/app.js",
-    "heroku-postbuild": "npm install && npm start"
-  },
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/app.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

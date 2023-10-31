@@ -13,10 +13,6 @@ dotenv.config();
 
 const app: Express = express();
 
-
-app.use(bodyParser.json());
-
-
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST', 'DELETE'],
@@ -24,7 +20,7 @@ app.use(cors({
 }));
 
 
-
+app.use(bodyParser.json());
 
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
