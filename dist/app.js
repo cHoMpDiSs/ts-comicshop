@@ -31,6 +31,7 @@ app.use((0, cors_1.default)({
     origin: "http://localhost:3000",
     credentials: true,
 }));
+app.options('*', (0, cors_1.default)());
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const newPublisher = new Publisher_1.Publisher(request.body);

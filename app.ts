@@ -29,6 +29,9 @@ app.use(
 );
 
 
+
+app.options('*', cors())
+
 // PUBLISHER API
 const postPublisher = async (request: Request, response: Response) => {
   const newPublisher = new Publisher(request.body);
