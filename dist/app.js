@@ -28,7 +28,8 @@ app.use(body_parser_1.default.urlencoded({
 }));
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:3000',
+    origin: "http://localhost:3000",
+    credentials: true,
 }));
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
