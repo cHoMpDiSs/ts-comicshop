@@ -13,7 +13,11 @@ dotenv.config();
 const app: Express = express();
 const port: number = parseInt(process.env.PORT || '3000', 10);
 
-
+const corsOptions = {
+  origin: 'http://localhost:3000/', // Replace with your React app's domain
+  methods: 'GET,POST,DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+};
 
 app.use(cors())
 
