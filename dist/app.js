@@ -21,14 +21,9 @@ const Comic_1 = require("./models/Comic");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = parseInt(process.env.PORT || '3000', 10);
-const corsOptions = {
-    origin: '*',
-    methods: 'GET,POST,DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
-};
-app.use((0, cors_1.default)(corsOptions));
-app.use(express_1.default.json());
+// const port: number = parseInt(process.env.PORT || '3000', 10);
+const port = 5000;
+app.use((0, cors_1.default)());
 app.use(body_parser_1.default.urlencoded({
     extended: true,
 }));
@@ -107,7 +102,6 @@ const postComic = (request, response) => __awaiter(void 0, void 0, void 0, funct
 });
 // GET
 const queryComic = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     try {
         const comics = yield Comic_1.Comic.findAll();
         response.send(comics);
@@ -148,4 +142,5 @@ app.delete('/api/comics/:id', deleteComic);
 app.listen(port, () => {
     console.log(`RUNNING ON PORT ${port}`);
 });
+exports.default = app;
 //# sourceMappingURL=app.js.map

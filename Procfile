@@ -1,1 +1,1 @@
-echo “web: node app.js” > Procfile
+echo “web: dist/node app.js” > Procfile

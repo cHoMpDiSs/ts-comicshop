@@ -11,19 +11,14 @@ import cors from 'cors';
 dotenv.config();
 
 const app: Express = express();
-const port: number = parseInt(process.env.PORT || '3000', 10);
+// const port: number = parseInt(process.env.PORT || '3000', 10);
+const port = 5000;
 
-const corsOptions = {
-  origin: '*', // Replace with your React app's domain
-  methods: 'GET,POST,DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
-};
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 
 
-app.use(express.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -116,7 +111,6 @@ const postComic = async (request: Request, response: Response) => {
 
 // GET
 const queryComic = async (request: Request, response: Response) => {
-  response.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     try {
         const comics = await Comic.findAll();
         response.send(comics)
@@ -164,3 +158,5 @@ app.delete('/api/comics/:id', deleteComic)
 app.listen(port, () => {
   console.log(`RUNNING ON PORT ${port}` )
 })
+
+export default app;
