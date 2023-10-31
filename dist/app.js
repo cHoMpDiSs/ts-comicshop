@@ -27,10 +27,15 @@ app.use(body_parser_1.default.urlencoded({
     extended: true,
 }));
 app.use(body_parser_1.default.json());
-app.use((0, cors_1.default)({
-    origin: "http://localhost:3000",
-    credentials: true,
-}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested, Content-Type, Accept Authorization");
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
+        return res.status(200).json({});
+    }
+    next();
+});
 app.options('*', (0, cors_1.default)());
 // PUBLISHER API
 const postPublisher = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
