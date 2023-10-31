@@ -15,12 +15,9 @@ const app: Express = express();
 
 // const port = 5000;
 
-const corsOptions = {
-  origin: "https://ts-comicshop-react.vercel.app/",  // or your exact URL you allow to make request
-}
 
 //...
-app.use(cors(corsOptions))
+app.use(cors({origin:"https://ts-comicshop-react.vercel.app"}))
 
 const port: number = parseInt(process.env.PORT || '3000');
 // PUBLISHER API
