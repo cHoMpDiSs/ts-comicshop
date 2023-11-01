@@ -10,13 +10,13 @@ import cors from 'cors';
 
 dotenv.config();
 
-const allowedOrigins = ['http://localhost:3000', 'https://vercel.com/chompdiss-projects/ts-comicshop-react'];
+const allowedOrigins = ['http://localhost:3000', 'https://ts-comicshop-react.vercel.app'];
 
 
 const app: Express = express();
 
 app.use(cors({
-  origin: 'https://ts-comicshop-react.vercel.app',
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
 }));

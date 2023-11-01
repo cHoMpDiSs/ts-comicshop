@@ -20,10 +20,10 @@ const Superhero_1 = require("./models/Superhero");
 const Comic_1 = require("./models/Comic");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
-const allowedOrigins = ['http://localhost:3000', 'https://vercel.com/chompdiss-projects/ts-comicshop-react'];
+const allowedOrigins = ['http://localhost:3000', 'https://ts-comicshop-react.vercel.app'];
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: 'https://ts-comicshop-react.vercel.app',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
 }));
