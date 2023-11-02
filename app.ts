@@ -10,7 +10,7 @@ import cors from 'cors';
 
 dotenv.config();
 
-const allowedOrigins = ['http://localhost:3000', 'https://ts-comicshop-react.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://ts-comicshop-react.vercel.app','https://www.chompyscomics.com'];
 
 
 const app: Express = express();
